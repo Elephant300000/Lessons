@@ -4,6 +4,10 @@ using UnityEngine;
 
 public interface IBehaviourHandler
 {
-    void Registr<T>(T behaviour) where T : class, IBehaviourBase;
-    T Get<T>() where T : class, IBehaviourBase;
+    void RegisteringBehaviour<T>(T behaviour) 
+        where T : class, IBehaviourBase; 
+
+    T GetBehaviour<T>() 
+        where T : class, IBehaviourBase;
+     
 }

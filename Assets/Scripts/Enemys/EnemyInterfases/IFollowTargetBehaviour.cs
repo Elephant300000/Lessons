@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyRandomMove : IBehaviourBase
+public interface IFollowTargetBehaviour : IBehaviourBase
 {
-    public void RandomMove();
+    void FollowPlayer();
 }
-

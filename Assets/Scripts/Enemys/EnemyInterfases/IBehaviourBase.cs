@@ -4,11 +4,11 @@ using UnityEngine;
 
 public interface IBehaviourBase 
 {
-    void Update();
-    void FixedUpdate();
-    void LateUpdate();
+    void UpdateBexaviour();
+    void FixedUpdateBexaviour();
+    void LateUpdateBexaviour();
     void EneterBexaviour();
-    void ExidBexaviour();
+    void ExitBexaviour();
 }
 
 

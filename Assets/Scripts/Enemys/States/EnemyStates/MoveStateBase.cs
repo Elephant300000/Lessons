@@ -1,19 +1,19 @@
 ﻿using State.EnemyState;
 using System.Collections.Generic;
 
-public class EnemyIdleState : EnemyStateBase
+public class MoveState : EnemyStateBase
 {
-    public EnemyIdleState
-        (
-        IStateHandler _stateHandler,
-        IBehaviourHandler behaviourHandler,
+    public MoveState(
+
+        IStateMachine _stateHandler, 
+        IBehaviourHandler behaviourHandler, 
         EnemyBase enemy) : base(_stateHandler, behaviourHandler, enemy)
     {
         Transitions();
         behaviours = new List<IBehaviourBase>()
         {
-            behaviourHandler.Get<IEnemyLookTarget>(),
-            behaviourHandler.Get<IEnemyIdel>()
+            behaviourHandler.GetBehaviour<IRandomMoveBehaviour>(),
+            behaviourHandler.GetBehaviour<IRandomRotateBehaviour>()
         };
     }
 
@@ -26,29 +26,30 @@ public class EnemyIdleState : EnemyStateBase
     public override void ExitState()
     {
         foreach (var behaviour in behaviours)
-            behaviour.ExidBexaviour();
+            behaviour.ExitBexaviour();
     }
 
     public override void UpdateState()
     {
         foreach (var behaviour in behaviours)
-            behaviour.Update();
+            behaviour.UpdateBexaviour();
     }
     public override void LateUpdateState()
     {
         foreach (var behaviour in behaviours)
-            behaviour.LateUpdate();
+            behaviour.LateUpdateBexaviour();
     }
 
     public override void FixedUpdateState()
     {
         foreach (var behaviour in behaviours)
-            behaviour.FixedUpdate();
+            behaviour.FixedUpdateBexaviour();
     }
     private void Transitions()
     {
-        var type = EnemyStateType.Idel;
-        _stateHandler.AddTransition(type, () => _enemy.IsRandomMove ? EnemyStateType.Move : type);
-        _stateHandler.AddTransition(type, () => _enemy.IsFollow ? EnemyStateType.Follow : type);
+        var type = EnemyStateType.Move;
+        _stateHandler.AddTransition(type, () => !_enemy.isRandomMove ? EnemyStateType.Idel : type);
+        _stateHandler.AddTransition(type, () => _enemy.isIdle ? EnemyStateType.Idel : type);
+        _stateHandler.AddTransition(type, () => _enemy.isFollowTarget ? EnemyStateType.Follow : type);
     }
 }

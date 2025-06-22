@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyRotate : IBehaviourBase
+public interface IRotateBehaviour : IBehaviourBase
 {
     public void Rotate(Quaternion quaternion);
 }
