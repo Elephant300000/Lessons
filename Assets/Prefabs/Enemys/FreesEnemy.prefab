@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1229466695029155888}
   - component: {fileID: 2912985909098784003}
   - component: {fileID: -7413593148419804816}
-  - component: {fileID: -2187666324164620792}
+  - component: {fileID: 4916376324845369941}
   m_Layer: 0
   m_Name: FreesEnemy
   m_TagString: Untagged
@@ -200,7 +200,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &-2187666324164620792
+--- !u!114 &4916376324845369941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,10 +209,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6273268511535198125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c8278b8a70a76846857e96808698ea7, type: 3}
+  m_Script: {fileID: 11500000, guid: de829ca4588529340b07f63e0750145f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedOfRotate: 5
-  _speedOfMove: 3
-  _minDistanceLookTarget: 20
-  _minDistanceFollowTarget: 10
+  <_speedOfRotate>k__BackingField: 3
+  <_speedOfMove>k__BackingField: 1
+  <_minDistanceLookTarget>k__BackingField: 5
+  <_minDistanceFollowTarget>k__BackingField: 1
+  _timeOfLastRotation: 0
+  <_timeRotation>k__BackingField: 0
+  <_isInCollision>k__BackingField: 0
+  <_dierectionOfRotate>k__BackingField: {x: 0, y: 0, z: 0}
+  <IsFollow>k__BackingField: 0
+  <IsRandomMove>k__BackingField: 0
+  <IsRandomRotate>k__BackingField: 0
+  <IsLookTar>k__BackingField: 0
+  <IsIdel>k__BackingField: 1

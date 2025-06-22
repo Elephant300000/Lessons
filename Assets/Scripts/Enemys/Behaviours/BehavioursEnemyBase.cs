@@ -12,12 +12,13 @@ public abstract class BehavioursEnemyBase :
     IEnemyIdel
 {
 
-    public BehavioursEnemyBase(EnemyBase enemy)
+    public BehavioursEnemyBase(EnemyBase enemy, IBehaviourHandler behaviourHandler)
     {
         this.enemy = enemy;
+        this.behaviourHandler = behaviourHandler;
     }
     public EnemyBase enemy { get; private set; }
-
+    public IBehaviourHandler behaviourHandler;
     
 
     public virtual void FollowPlayer() { }

@@ -13,27 +13,27 @@ public class InputSystemTest : MonoBehaviour
     private InputMap _input;
     private void Awake()
     {
-        _input = new();
-        _playerInputUnityComponent = GetComponent<PlayerInput>();
-        SetInputAction();
+      //  _input = new();
+      //  _playerInputUnityComponent = GetComponent<PlayerInput>();
+      //  SetInputAction();
     }
    
-    private void Update()
-    {
-        OnMove?.Invoke(_inputActionUnity.ReadValue<Vector2>());
-    }
-    private void OnEnable()
-    {
-        _input.Enable();
-        _input.Player.Move.performed += context => InvokeOnMove(context);
-        _input.Player.Move.canceled += context => InvokeOnMove(context);
-    }
-    private void OnDisable()
-    {
-        _input.Player.Move.performed -= context => InvokeOnMove(context);
-        _input.Player.Move.canceled -= context => InvokeOnMove(context);
-        _input.Dispose();
-    }
+    //private void Update()
+    //{
+    //    OnMove?.Invoke(_inputActionUnity.ReadValue<Vector2>());
+    //}
+    //private void OnEnable()
+    //{
+    //    _input.Enable();
+    //    _input.Player.Move.performed += context => InvokeOnMove(context);
+    //    _input.Player.Move.canceled += context => InvokeOnMove(context);
+    //}
+    //private void OnDisable()
+    //{
+    //    _input.Player.Move.performed -= context => InvokeOnMove(context);
+    //    _input.Player.Move.canceled -= context => InvokeOnMove(context);
+    //    _input.Dispose();
+    //}
 
     public void InvokeOnMove(InputAction.CallbackContext context)
     {

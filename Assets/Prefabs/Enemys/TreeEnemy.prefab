@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1229466695029155888}
   - component: {fileID: 2912985909098784003}
   - component: {fileID: 1729534798556927930}
-  - component: {fileID: -4373017370064071422}
   m_Layer: 0
   m_Name: TreeEnemy
   m_TagString: Untagged
@@ -117,22 +116,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &-4373017370064071422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6273268511535198125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c8278b8a70a76846857e96808698ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedOfRotate: 5
-  _speedOfMove: 3
-  _minDistanceLookTarget: 20
-  _minDistanceFollowTarget: 10
 --- !u!1 &8273789450067080908
 GameObject:
   m_ObjectHideFlags: 0

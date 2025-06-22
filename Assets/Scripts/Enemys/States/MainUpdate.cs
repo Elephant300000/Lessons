@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using State.EnemyState;
 
 public class MainUpdate : MonoBehaviour
 {
     private Dictionary<EnemyBase, EnemyStateHandler> _enemyStateHans = new();
     private Dictionary<EnemyBase, EnemyInitBexaviors> _initBexaviors = new();
+    private Dictionary<EnemyBase, IBehaviourHandler> _behaveourhandler = new();
     private List<EnemyBase> _enemyBases = new();
 
     private void Awake()
@@ -14,67 +16,66 @@ public class MainUpdate : MonoBehaviour
     }
     private void OnEnable()
     {
-        
+
     }
+
     private void Start()
     {
-        foreach(EnemyBase e in _enemyBases)
+        foreach (EnemyBase e in _enemyBases)
         {
-            var enemyBex = new EnemyInitBexaviors();
-            var enemyState = new EnemyStateHandler();
-            enemyState.SetState(new EnemyIdleState(enemyBex.idle));
-            InitBexaviours(e, enemyBex);
+            StartInitDictionory(e);
+
         }
     }
-    private void OnDisable()
+
+    private void StartInitDictionory(EnemyBase e)
     {
+        var enemyBehInit = new EnemyInitBexaviors();
+        var enemyState = new EnemyStateHandler();
+        var enemyBehaviourHandler = new BehaviourHandler();
+        InitBexaviours(e, enemyBehInit, enemyBehaviourHandler);
+        InitStates(enemyState, enemyBehaviourHandler, e);
+        enemyState.SetState(EnemyStateType.Idel);
+        _enemyStateHans[e] = enemyState;
+        _behaveourhandler[e] = enemyBehaviourHandler;
+        _initBexaviors[e] = enemyBehInit;
     }
+
     void Update()
     {
         foreach (EnemyStateHandler eSH in _enemyStateHans.Values)
-        {
-            eSH.UpdateState();
-        }
-
+            eSH?.UpdateState();
     }
     private void LateUpdate()
     {
         foreach (EnemyStateHandler eSH in _enemyStateHans.Values)
-        {
-            eSH.LateUpdateState();
-        }
+            eSH?.LateUpdateState();        
     }
     private void FixedUpdate()
     {
         foreach (EnemyStateHandler eSH in _enemyStateHans.Values)
-        {
-            eSH.FixedUpdateState();
-        }
+            eSH?.FixedUpdateState();
     }
-    private void ChangeStates(EnemyBase e)
-    {
-        var bex = _initBexaviors[e];
-        var state = _enemyStateHans[e];
-        if (e.IsIdel)
-        {
-            state.SetState(new EnemyIdleState(bex.idle));
-        }
-        else if (e.IsFollow)
-        {
-            state.SetState(new EnemyFollowStates(bex.followTar));
-        }
-        else if (e.IsRandomMove)
-        {
-            state.SetState(new EnemyMoveState(bex.ranMove));
-        }
-    }
+   
 
-    private void InitBexaviours(EnemyBase e, EnemyInitBexaviors bex)
+    private void InitBexaviours(EnemyBase e, EnemyInitBexaviors bex,IBehaviourHandler behaviourHandler)
     {
-        bex.InitIdleBehaviour(new EnemyIdel(e));
-        bex.InitRandomMove(new EnemyRandomMove(e));
-        bex.InitRandomRotate(new EnemyRandomRotate(e));
-        bex.InitFollowTarget(new EnemyFollowPlayer(e));
-        bex.InitLoockTarget(new EnemyLookRotate(e));
+        if (bex != null)
+        {
+            bex.InitIdleBehaviour(new EnemyIdel(e, behaviourHandler));
+            bex.InitRandomMove(new EnemyRandomMove(e, behaviourHandler));
+            bex.InitRandomRotate(new EnemyRandomRotate(e, behaviourHandler));
+            bex.InitFollowTarget(new EnemyFollowPlayer(e, behaviourHandler));
+            bex.InitLoockTarget(new EnemyLookRotate(e, behaviourHandler));
+        }
+    }
+    public void InitStates(IStateHandler _stateHandler,
+        IBehaviourHandler behaviourHandler,
+        EnemyBase enemy)
+    {
+        _stateHandler.RegistorStates(EnemyStateType.Idel, new EnemyIdleState(_stateHandler, behaviourHandler, enemy));
+       // _stateHandler.RegistorStates(EnemyStateType.Move, new EnemyMoveState(_stateHandler, behaviourHandler, enemy));
+       // _stateHandler.RegistorStates(EnemyStateType.Follow, new EnemyFollowStates(_stateHandler, behaviourHandler, enemy));
+
     }
 }

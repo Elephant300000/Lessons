@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyLookTarget : IBexaviourHandler
+public interface IPlayerIdel
 {
-    public void LookRotate();
+    void Idel();
 }

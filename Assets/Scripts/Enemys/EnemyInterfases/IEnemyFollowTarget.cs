@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyFollowTarget : IBexaviourHandler
+public interface IEnemyFollowTarget : IBehaviourBase
 {
     void FollowPlayer();
 }
