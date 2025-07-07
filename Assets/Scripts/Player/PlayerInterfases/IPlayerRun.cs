@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IPlayerRun
+using UnityEngine.InputSystem;
+namespace Player.PlayerInterfases
 {
-    void Run(Vector3 axis); 
+    public interface IPlayerRun : IBehaviourBase
+    {
+        void Run(InputAction.CallbackContext ctx);
+    }
 }

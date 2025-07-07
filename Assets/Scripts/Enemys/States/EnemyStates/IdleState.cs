@@ -1,6 +1,7 @@
 ﻿using State.EnemyState;
 using System.Collections.Generic;
 
+
 public class IdleState : EnemyStateBase
 {
     public IdleState(
@@ -49,8 +50,8 @@ public class IdleState : EnemyStateBase
     private void Transitions()
     {
         var type = EnemyStateType.Idel;
-        _stateHandler.AddTransition(type, () => !_enemy.isIdle ? EnemyStateType.Move : type);
-        _stateHandler.AddTransition(type, () => _enemy.isRandomMove ? EnemyStateType.Move : type);
-        _stateHandler.AddTransition(type, () => _enemy.isFollowTarget ? EnemyStateType.Follow : type);
+        _stateHandler.AddTransition(type, () => !_enemy.context.isIdle ? EnemyStateType.Move : type);
+        _stateHandler.AddTransition(type, () => _enemy.context.isRandomMove ? EnemyStateType.Move : type);
+        _stateHandler.AddTransition(type, () => _enemy.context.isFollowTarget ? EnemyStateType.Follow : type);
     }
 }

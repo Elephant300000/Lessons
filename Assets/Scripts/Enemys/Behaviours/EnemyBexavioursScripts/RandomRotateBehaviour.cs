@@ -14,7 +14,7 @@ public class RandomRotateBehaviour : RotateBehaviour
     }
     public override void RandomRotate()
     {
-        if (enemy.isRandomRotate)
+        if (enemy.context.isRandomRotate)
         {
             float turnAmount = 0;
             float currentY = enemy._enemyTr.eulerAngles.y;

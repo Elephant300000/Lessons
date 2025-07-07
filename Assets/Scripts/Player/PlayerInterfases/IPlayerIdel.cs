@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IPlayerIdel
+namespace Player.PlayerInterfases
 {
-    void Idel();
+    public interface IPlayerIdel : IBehaviourBase
+    {
+        void Idel();
+    }
 }

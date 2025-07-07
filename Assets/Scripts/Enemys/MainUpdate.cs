@@ -1,3 +1,5 @@
+using Enemy.Action_;
+using Enemy.Context;
 using State.EnemyState;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +8,23 @@ public class MainUpdate : MonoBehaviour
 {
     private Dictionary<EnemyBase, IStateMachine> _enemyStateMachines = new(); 
     private Dictionary<EnemyBase, IBehaviourHandler> _behaviourHandlers = new();
+    public Dictionary<EnemyBase, PlanerMove> enemyPlaners = new();
     private List<EnemyBase> _enemyBases = new();
 
+
+    private void OnEnable()
+    {
+        foreach (var enemy in _enemyBases)
+            enemyPlaners[enemy].OnEnable(enemy.context);
+    }
+    private void OnDisable()
+    {
+        foreach (var enemy in _enemyBases)
+            enemyPlaners[enemy].OnDisable(enemy.context);
+    }
     private void Awake()
     {
+        
         _enemyBases.AddRange(FindObjectsOfType<EnemyBase>());
     } 
     private void Start()
@@ -37,14 +52,18 @@ public class MainUpdate : MonoBehaviour
     {
         var stateMachine = new EnemyStateMachine();
         var behaviourHandler = new BehaviourHandler();
+        var planer = new PlanerMove();
 
         InitializeBexaviours(enemy, behaviourHandler);
         InitializeStates(stateMachine, behaviourHandler, enemy);
+        InitializePlaner(stateMachine, planer);
         stateMachine.SetState(EnemyStateType.Idel);
 
         _enemyStateMachines[enemy] = stateMachine;
         _behaviourHandlers[enemy] = behaviourHandler;
+        enemyPlaners[enemy] = planer;
     }
+
 
     private void InitializeBexaviours(EnemyBase enemy, IBehaviourHandler behaviourHandler)
     {
@@ -64,5 +83,9 @@ public class MainUpdate : MonoBehaviour
         _stateMachine.RegisteringState(EnemyStateType.Idel, new IdleState(_stateMachine, behaviourHandler, enemy));
         _stateMachine.RegisteringState(EnemyStateType.Move, new MoveState(_stateMachine, behaviourHandler, enemy));
         _stateMachine.RegisteringState(EnemyStateType.Follow, new FollowTargetState(_stateMachine, behaviourHandler, enemy)); 
+    }
+    public void InitializePlaner(IStateMachine _stateMachine, PlanerMove planerMove)
+    {
+        planerMove.RegistrAction(new ActionMove(_stateMachine));
     }
 }

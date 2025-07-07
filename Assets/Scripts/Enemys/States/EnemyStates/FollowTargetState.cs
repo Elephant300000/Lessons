@@ -48,7 +48,7 @@ public class FollowTargetState : EnemyStateBase
     private void Transitions()
     {
         var type = EnemyStateType.Follow;
-        _stateHandler.AddTransition(type, () => !_enemy.isFollowTarget ? EnemyStateType.Idel : type); 
+        _stateHandler.AddTransition(type, () => !_enemy.context.isFollowTarget ? EnemyStateType.Idel : type); 
     }
 }
 

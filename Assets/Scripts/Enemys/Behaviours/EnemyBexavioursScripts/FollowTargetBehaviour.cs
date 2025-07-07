@@ -13,7 +13,7 @@ public class FollowTargetBehaviour : MoveBehaviour
     }
     public override void FollowPlayer()
     { 
-        if (enemy.isFollowTarget)
+        if (enemy.context.isFollowTarget)
         {
             var direction = (enemy._playerTr.position - enemy._enemyTr.position).normalized;
             Moving(direction);

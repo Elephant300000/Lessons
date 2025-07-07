@@ -9,7 +9,7 @@ public class IdleBehaviour : EnemyBehaviourBase
     public override void LateUpdateBexaviour() { }
     public override void FixedUpdateBexaviour()
     {
-        if (enemy.isIdle)
+        if (enemy.context.isIdle)
         {
             Debug.Log("idle beh");
         }

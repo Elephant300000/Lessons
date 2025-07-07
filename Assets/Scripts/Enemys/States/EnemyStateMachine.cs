@@ -23,7 +23,6 @@ public class EnemyStateMachine : IStateMachine
     }
     void IStateMachine.UpdateState()
     {
-        TryTransition();
         _currentState?.UpdateState();
     }
     void IStateMachine.LateUpdateState()

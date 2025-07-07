@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Enemy.Context;
 
 namespace State.EnemyState
 {
     
     public abstract class EnemyStateBase : IStateGame
     {
-        public EnemyStateBase(IStateMachine _stateHandler, IBehaviourHandler behaviourHandler, EnemyBase enemy)
+        public  EnemyStateBase(IStateMachine _stateHandler, IBehaviourHandler behaviourHandler, EnemyBase enemy)
         {
             this._stateHandler = _stateHandler;
             this.behaviourHandler = behaviourHandler;

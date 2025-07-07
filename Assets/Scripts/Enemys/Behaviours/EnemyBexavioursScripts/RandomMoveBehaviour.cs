@@ -13,7 +13,7 @@ public class RandomMoveBehaviour : MoveBehaviour
     } 
     public override void RandomMove()
     { 
-        if (enemy.isRandomMove)
+        if (enemy.context.isRandomMove)
             Moving(enemy._enemyTr.forward);
         Debug.Log("RandomeMove beh");
     } 

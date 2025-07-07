@@ -48,8 +48,8 @@ public class MoveState : EnemyStateBase
     private void Transitions()
     {
         var type = EnemyStateType.Move;
-        _stateHandler.AddTransition(type, () => !_enemy.isRandomMove ? EnemyStateType.Idel : type);
-        _stateHandler.AddTransition(type, () => _enemy.isIdle ? EnemyStateType.Idel : type);
-        _stateHandler.AddTransition(type, () => _enemy.isFollowTarget ? EnemyStateType.Follow : type);
+        _stateHandler.AddTransition(type, () => !_enemy.context.isRandomMove ? EnemyStateType.Idel : type);
+        _stateHandler.AddTransition(type, () => _enemy.context.isIdle ? EnemyStateType.Idel : type);
+        _stateHandler.AddTransition(type, () => _enemy.context.isFollowTarget ? EnemyStateType.Follow : type);
     }
 }

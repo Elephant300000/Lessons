@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-public interface IPlayerMove 
+namespace Player.PlayerInterfases
 {
-    void InputMove(InputAction.CallbackContext ctx);
-    void Jump();
+    public interface IPlayerMove : IBehaviourBase
+    {
+        void InputMove(InputAction.CallbackContext ctx);
+        void Jump();
+    }
 }
