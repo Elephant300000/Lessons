@@ -1,5 +1,6 @@
 using Enemy.Action_;
 using Enemy.Context;
+using Player.PlayerInterfases;
 using State.EnemyState;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,10 @@ public class MainUpdate : MonoBehaviour
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
             stateMachine.UpdateState();
+        foreach (EnemyBase enemy in _enemyBases)
+            enemyPlaners[enemy].UpdateContext(enemy.context);
+
+
     }
     private void LateUpdate()
     {

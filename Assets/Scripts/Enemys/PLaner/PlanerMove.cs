@@ -15,6 +15,11 @@ public class PlanerMove
             action?.Subscribe(ctx);
 
     }
+    public void UpdateContext(IContextEvent context)
+    {
+        foreach (var action in actions)
+            action.Exicute(context);
+    }
     public void OnDisable(IContextEvent ctx)
     {
 
