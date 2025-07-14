@@ -7,11 +7,12 @@ namespace Player.PlayerStates.StateHandler
     public class PlayerFSM : IPlayerStateHandler
     {
         private Base.IAbstractState _currentState;
-        private PlayerStateType _currentStateType;
-        private readonly Dictionary<PlayerStateType, Base.IAbstractState> states = new();
-        private readonly Dictionary<PlayerStateType, List<Func<PlayerStateType>>> transitions = new();
-        public void SetState(PlayerStateType type)
+        private MoveStateType _currentStateType;
+        private readonly Dictionary<MoveStateType, Base.IAbstractState> states = new();
+        private readonly Dictionary<MoveStateType, List<Func<MoveStateType>>> transitions = new();
+        public void SetState(MoveStateType type)
         {
+            if (_currentStateType.Equals(type)) return;
             if (states.ContainsKey(type))
             {
                 _currentState?.ExitState();
@@ -33,7 +34,7 @@ namespace Player.PlayerStates.StateHandler
             _currentState?.FixedUpdateState();
         }
 
-        public void RegisteringState(PlayerStateType type, Base.IAbstractState state)
+        public void RegisteringState(MoveStateType type, Base.IAbstractState state)
         {
             if (!states.ContainsKey(type))
                 states[type] = state;
@@ -46,7 +47,7 @@ namespace Player.PlayerStates.StateHandler
         public void UpdateState();
         public void LateUpdateState();
         public void FixedUpdateState();
-        public void RegisteringState(PlayerStateType type, Base.IAbstractState state);
-        public void SetState(PlayerStateType type);
+        public void RegisteringState(MoveStateType type, Base.IAbstractState state);
+        public void SetState(MoveStateType type);
     }
 }

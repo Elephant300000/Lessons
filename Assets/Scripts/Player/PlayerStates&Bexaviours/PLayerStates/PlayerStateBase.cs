@@ -36,10 +36,11 @@ namespace Player.PlayerStates.Base
         void LateUpdateState();
 
     }
-    public enum PlayerStateType
+    public enum MoveStateType
     {
         Idle,
-        Jump,
-        Move
+        Walk,
+        Run,
+        Sprint 
     }
 }

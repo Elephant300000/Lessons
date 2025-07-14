@@ -1,7 +1,4 @@
 using Enemy.Action_;
-using Enemy.Context;
-using Player.PlayerInterfases;
-using Player.PlayerStates.StateHandler;
 using State.EnemyState;
 using System.Collections.Generic;
 using UnityEngine;
