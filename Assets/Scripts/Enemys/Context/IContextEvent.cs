@@ -7,36 +7,26 @@ namespace Enemy.Context
         event Action onTryTransitionState;
         void UpdateContext();
     }
-    public interface IContextBase:IContextEvent,IContextCommands,IContextStates
-    {
+    public interface IContextBase : IContextEvent, IContextCommands, IContextStates { }
 
-    }
+
+
     public interface IContextStates
     {
-        bool IsFollow { get; }
+        bool isFollowTarget { get; }
+        bool isLookTarget { get; }
+        bool isRandomRotate { get; }
+        bool isRandomMove { get; }
+        bool isIdle { get; }
     }
     public interface IContextCommands
     {
-        void SetIsFollow(bool isFollow);
+        void SetIsFollow(bool _isFollow);
+        void SetIsLook(bool _isLook);
+        void SetIsRanMove(bool _isRanMove);
+        void SetIsRanRotate(bool _isRanRotate);
+        void SetIsIdle(bool _isIdle);
+
     }
-    public class TestContext : IContextBase
-    {
-        private bool _isFollow = false;
-        public bool IsFollow => _isFollow;
-
-        public event Action onTryTransitionState;
-
-        public void SetIsFollow(bool _isFollow)
-        {
-            if (IsFollow == _isFollow) return;
-            this._isFollow = _isFollow;
-            onTryTransitionState?.Invoke();
-        }
-
-
-        public void UpdateContext()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

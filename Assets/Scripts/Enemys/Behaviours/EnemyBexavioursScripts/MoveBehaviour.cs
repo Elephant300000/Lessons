@@ -7,7 +7,7 @@ public class MoveBehaviour : EnemyBehaviourBase
     public override void ExitBexaviour() { } 
     public override void UpdateBexaviour() { } 
     public override void LateUpdateBexaviour() { } 
-    public override void FixedUpdateBexaviour() { }
+    public override void FixedUpdateBehaviour() { }
     public override void Moving(Vector3 _dierectionOfMove)
     { 
         enemy._myRb.MovePosition(enemy._myRb.position + _dierectionOfMove * enemy._speedOfMove * Time.fixedDeltaTime);

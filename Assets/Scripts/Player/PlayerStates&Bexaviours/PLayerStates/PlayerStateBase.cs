@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Player.PlayerStates.Base
 {
-    public abstract class PlayerStateBase : IStateGame
+    public abstract class PlayerStateBase : IAbstractState
     {
-        public PlayerStateBase(IPlayerStateHandler _stateHandler, IBehaviourHandler behaviourHandler, PlayerBase pl)
+        public PlayerStateBase(IPlayerStateHandler _stateHandler, IBehaviourHandler behaviourHandler, PlayerInfo pl)
         {
             this._stateHandler = _stateHandler;
             this.behaviourHandler = behaviourHandler;
@@ -16,7 +16,7 @@ namespace Player.PlayerStates.Base
 
         protected readonly IPlayerStateHandler _stateHandler;
         public IBehaviourHandler behaviourHandler;
-        public PlayerBase pl;
+        public PlayerInfo pl;
 
         protected List<IBehaviourBase> behaviours = new();
         public abstract void EnterState();
@@ -25,14 +25,9 @@ namespace Player.PlayerStates.Base
         public abstract void FixedUpdateState();
         public abstract void LateUpdateState();
     }
-    public enum PlayerStateType
-    {
-        Idel,
-        Jump,
-        Move
-    }
+   
 
-    public interface IStateGame
+    public interface IAbstractState
     {
         void EnterState();
         void ExitState();
@@ -40,5 +35,11 @@ namespace Player.PlayerStates.Base
         void FixedUpdateState();
         void LateUpdateState();
 
+    }
+    public enum PlayerStateType
+    {
+        Idle,
+        Jump,
+        Move
     }
 }

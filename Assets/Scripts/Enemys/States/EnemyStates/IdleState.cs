@@ -45,7 +45,7 @@ public class IdleState : EnemyStateBase
     public override void FixedUpdateState()
     {
         foreach (var behaviour in behaviours)
-            behaviour.FixedUpdateBexaviour();
+            behaviour.FixedUpdateBehaviour();
     }
     private void Transitions()
     {

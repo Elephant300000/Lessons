@@ -9,15 +9,13 @@ namespace Player.PlayerBehaviours.Behaviours
     {
         public override void EneterBexaviour()
         {
-            Idel();
         }
 
         public override void ExitBexaviour()
         {
-            Idel();
         }
 
-        public override void FixedUpdateBexaviour()
+        public override void FixedUpdateBehaviour() 
         {
             Idel();
         }

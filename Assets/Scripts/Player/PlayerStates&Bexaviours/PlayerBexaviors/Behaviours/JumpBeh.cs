@@ -10,16 +10,15 @@ namespace Player.PlayerBehaviours.Behaviours
     {
         public override void EneterBexaviour()
         {
-            Jump();
         }
 
         public override void ExitBexaviour()
         {
-            Jump();
         }
 
-        public override void FixedUpdateBexaviour()
+        public override void FixedUpdateBehaviour()
         {
+            Jump();
         }
 
         public override void Jump()

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Player.PlayerStates.StateHandler
 {
-    public class PlayerStateHandler : IPlayerStateHandler
+    public class PlayerFSM : IPlayerStateHandler
     {
-        private Base.IStateGame _currentState;
+        private Base.IAbstractState _currentState;
         private PlayerStateType _currentStateType;
-        private readonly Dictionary<PlayerStateType, Base.IStateGame> states = new();
+        private readonly Dictionary<PlayerStateType, Base.IAbstractState> states = new();
         private readonly Dictionary<PlayerStateType, List<Func<PlayerStateType>>> transitions = new();
         public void SetState(PlayerStateType type)
         {
@@ -33,7 +33,7 @@ namespace Player.PlayerStates.StateHandler
             _currentState?.FixedUpdateState();
         }
 
-        public void RegisteringState(PlayerStateType type, Base.IStateGame state)
+        public void RegisteringState(PlayerStateType type, Base.IAbstractState state)
         {
             if (!states.ContainsKey(type))
                 states[type] = state;
@@ -46,7 +46,7 @@ namespace Player.PlayerStates.StateHandler
         public void UpdateState();
         public void LateUpdateState();
         public void FixedUpdateState();
-        public void RegisteringState(PlayerStateType type, Base.IStateGame state);
+        public void RegisteringState(PlayerStateType type, Base.IAbstractState state);
         public void SetState(PlayerStateType type);
     }
 }

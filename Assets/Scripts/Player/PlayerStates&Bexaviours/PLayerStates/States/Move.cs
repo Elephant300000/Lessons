@@ -12,7 +12,7 @@ namespace Player.PlayerStates.States
 
        IPlayerStateHandler _stateHandler,
        IBehaviourHandler behaviourHandler,
-       PlayerBase pl
+       PlayerInfo pl
        ) : base(_stateHandler, behaviourHandler, pl)
         {
             behaviours = new List<IBehaviourBase>()
@@ -50,7 +50,7 @@ namespace Player.PlayerStates.States
         public override void FixedUpdateState()
         {
             foreach (var behaviour in behaviours)
-                behaviour.FixedUpdateBexaviour();
+                behaviour.FixedUpdateBehaviour();
         }
 
        

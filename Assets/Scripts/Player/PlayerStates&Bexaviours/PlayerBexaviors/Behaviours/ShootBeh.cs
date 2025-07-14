@@ -9,16 +9,15 @@ namespace Player.PlayerBehaviours.Behaviours
     {
         public override void EneterBexaviour()
         {
-            Shot();
         }
 
         public override void ExitBexaviour()
         {
-            Shot();
         }
 
-        public override void FixedUpdateBexaviour()
+        public override void FixedUpdateBehaviour()
         {
+            Shot();
         }
 
         public override void LateUpdateBexaviour()

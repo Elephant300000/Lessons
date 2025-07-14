@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IBehaviourBase 
 {
     void UpdateBexaviour();
-    void FixedUpdateBexaviour();
+    void FixedUpdateBehaviour();
     void LateUpdateBexaviour();
     void EneterBexaviour();
     void ExitBexaviour();

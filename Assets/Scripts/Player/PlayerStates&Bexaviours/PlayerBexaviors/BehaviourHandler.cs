@@ -5,7 +5,7 @@ using System;
 
 namespace Player.PlayerBehaviours.Handler
 {
-    public class BexaviourHandler : IBehaviourHandler
+    public class BehaviourHandler : IBehaviourHandler
     {
         private readonly Dictionary<Type, IBehaviourBase> bexaviours = new();
 

@@ -7,7 +7,7 @@ public class IdleBehaviour : EnemyBehaviourBase
     public override void ExitBexaviour() { }
     public override void UpdateBexaviour() { }
     public override void LateUpdateBexaviour() { }
-    public override void FixedUpdateBexaviour()
+    public override void FixedUpdateBehaviour()
     {
         if (enemy.context.isIdle)
         {

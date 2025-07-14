@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Enemy.Context
 {
-    public class EnemyStateMoveContext : IContextEvent
+    public class EnemyStateMoveContext : IContextBase
     {
         public EnemyStateMoveContext(EnemyBase enemy) 
         {
@@ -13,66 +13,22 @@ namespace Enemy.Context
         public readonly EnemyBase enemy;
         public event Action onTryTransitionState;
         public float timeAFC { get; private set; } = 5f;
-        private bool _isIdle = true;
-        public bool isIdle 
-        {
-            get => _isIdle;
-            set 
-            {
-                if (_isIdle == value) return;
-                    _isIdle = value;
-                onTryTransitionState?.Invoke();
-            }
-            
-        }
-        private bool _isFollowTarget = true;
-        public bool isFollowTarget
-        {
-            get => _isFollowTarget;
-            set
-            {
-                if (_isFollowTarget == value) return;
-                _isFollowTarget = value;
-                onTryTransitionState?.Invoke();
-            }
 
-        }
-        private bool _isRandomMove = true;
-        public bool isRandomMove
-        {
-            get => _isRandomMove;
-            set
-            {
-                if (_isRandomMove == value) return;
-                _isRandomMove = value;
-                onTryTransitionState?.Invoke();
-            }
+        private bool _isFollow;
+        public bool isFollowTarget => _isFollow;
 
-        }
-        private bool _isLookTarget = true;
-        public bool isLookTarget
-        {
-            get => _isLookTarget;
-            set
-            {
-                if (_isLookTarget == value) return;
-                _isLookTarget = value;
-                onTryTransitionState?.Invoke();
-            }
+        private bool _isLook;
+        public bool isLookTarget => _isLook;
 
-        }
-        private bool _isRandomRotate = true;
-        public bool isRandomRotate
-        {
-            get => _isRandomRotate;
-            set
-            {
-                if (_isRandomRotate == value) return;
-                _isRandomRotate = value;
-                onTryTransitionState?.Invoke();
-            }
+        private bool _isRandomRotate;
+        public bool isRandomRotate => _isRandomRotate;
 
-        }
+        private bool _isRandomMove;
+        public bool isRandomMove => _isRandomMove;
+
+        private bool _isIdle;
+        public bool isIdle => _isIdle;
+
         private float time;
 
 
@@ -81,10 +37,10 @@ namespace Enemy.Context
         public void UpdateContext()
         {
             Threchold();
-            isRandomMove = !isIdle && !isFollowTarget;
-            isRandomRotate = !isLookTarget;
-            isLookTarget = IsMinDistance(enemy._minDistanceLookTarget);
-            isFollowTarget = IsMinDistance(enemy._minDistanceFollowTarget);
+            SetIsRanMove(!isIdle && !isFollowTarget);
+            SetIsRanRotate(!isLookTarget);
+            SetIsLook(IsMinDistance(enemy._minDistanceLookTarget));
+            SetIsFollow(IsMinDistance(enemy._minDistanceFollowTarget));
         }
        
 
@@ -108,9 +64,44 @@ namespace Enemy.Context
             if (time < Time.time)
             {
                 time = UnityEngine.Random.Range(3, 10)+ Time.time;
-                isIdle = UnityEngine.Random.value>=0.5f;
+                SetIsIdle(UnityEngine.Random.value>=0.5f);
             }
             
+        }
+
+        public void SetIsFollow(bool _isFollow)
+        {
+            if (this._isFollow == _isFollow) return;
+            this._isFollow = _isFollow;
+            onTryTransitionState?.Invoke();
+        }
+
+        public void SetIsLook(bool _isLook)
+        {
+            if (this._isLook == _isLook) return;
+            this._isLook = _isLook;
+            onTryTransitionState?.Invoke();
+        }
+
+        public void SetIsRanMove(bool _isRanMove)
+        {
+            if (this._isRandomMove == _isRanMove) return;
+            this._isRandomMove = _isRanMove;
+            onTryTransitionState?.Invoke();
+        }
+
+        public void SetIsRanRotate(bool _isRanRotate)
+        {
+            if (this._isRandomRotate == _isRanRotate) return;
+            this._isRandomRotate = _isRanRotate;
+            onTryTransitionState?.Invoke();
+        }
+
+        public void SetIsIdle(bool _isIdle)
+        {
+            if (this._isIdle == _isIdle) return;
+            this._isIdle = _isIdle;
+            onTryTransitionState?.Invoke();
         }
     }
 }

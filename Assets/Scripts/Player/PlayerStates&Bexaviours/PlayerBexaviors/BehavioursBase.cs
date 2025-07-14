@@ -14,7 +14,7 @@ namespace Player.PlayerBehaviours.Base
     {
         public abstract void EneterBexaviour();
         public abstract void ExitBexaviour();
-        public abstract void FixedUpdateBexaviour();
+        public abstract void FixedUpdateBehaviour();
         public virtual void Idel() { }
         public virtual void InputMove(InputAction.CallbackContext ctx) { }
         public virtual void Jump() { }

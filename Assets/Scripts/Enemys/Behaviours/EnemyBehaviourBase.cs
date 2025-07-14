@@ -22,7 +22,7 @@ public abstract class EnemyBehaviourBase :
     public abstract void ExitBexaviour(); 
     public abstract void UpdateBexaviour();
     public abstract void LateUpdateBexaviour();
-    public abstract void FixedUpdateBexaviour();
+    public abstract void FixedUpdateBehaviour();
 
     public virtual void FollowPlayer() { }
     public virtual void LookRotate() { }

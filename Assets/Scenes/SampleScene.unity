@@ -1146,14 +1146,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 452131586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38adf7f098d81f441b2f76ed8d3e5fff, type: 3}
+  m_Script: {fileID: 11500000, guid: 500fea434c9effa41ad18d551f430288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsIdel: 1
-  IsRun: 0
-  IsWalk: 0
-  IsJump: 0
-  IsShoot: 0
 --- !u!4 &482776648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 937101434930531698, guid: 48e833ea342407144818e4da338a6c0d, type: 3}
@@ -2196,13 +2191,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2970948846375114764, guid: 4dfc023204f141f438e4847caf62674a, type: 3}
+      propertyPath: <_speedOfRotate>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6273268511535198125, guid: 4dfc023204f141f438e4847caf62674a, type: 3}
       propertyPath: m_Name
       value: ElectroEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 6273268511535198125, guid: 4dfc023204f141f438e4847caf62674a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6615386738595924979, guid: 4dfc023204f141f438e4847caf62674a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -9,16 +9,15 @@ namespace Player.PlayerBehaviours.Behaviours
     {
         public override void EneterBexaviour()
         {
-            Run(new InputAction.CallbackContext());
         }
 
         public override void ExitBexaviour()
         {
-            Run(new InputAction.CallbackContext());
         }
 
-        public override void FixedUpdateBexaviour()
+        public override void FixedUpdateBehaviour()
         {
+            Run(new InputAction.CallbackContext());
         }
 
         public override void LateUpdateBexaviour()

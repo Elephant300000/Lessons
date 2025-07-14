@@ -1,6 +1,7 @@
 using Enemy.Action_;
 using Enemy.Context;
 using Player.PlayerInterfases;
+using Player.PlayerStates.StateHandler;
 using State.EnemyState;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,48 +10,52 @@ public class MainUpdate : MonoBehaviour
 {
     private Dictionary<EnemyBase, IStateMachine> _enemyStateMachines = new(); 
     private Dictionary<EnemyBase, IBehaviourHandler> _behaviourHandlers = new();
-    public Dictionary<EnemyBase, PlanerMove> enemyPlaners = new();
-    private List<EnemyBase> _enemyBases = new();
+    private Dictionary<EnemyBase, PlanerMove> enemyPlaners = new();
+    private List<EnemyBase> _enemies = new();
 
+    private PlayerInfo player;
 
-    private void OnEnable()
-    {
-        foreach (var enemy in _enemyBases)
-            enemyPlaners[enemy].OnEnable(enemy.context);
-    }
-    private void OnDisable()
-    {
-        foreach (var enemy in _enemyBases)
-            enemyPlaners[enemy].OnDisable(enemy.context);
-    }
     private void Awake()
     {
-        
-        _enemyBases.AddRange(FindObjectsOfType<EnemyBase>());
-    } 
+        _enemies.AddRange(FindObjectsOfType<EnemyBase>());
+        player = FindObjectOfType<PlayerInfo>().GetComponent<PlayerInfo>();
+    }
+
+    private void OnDisable()
+    {
+        foreach (var enemy in _enemies)
+            enemyPlaners[enemy].OnDisable(enemy.context);
+    }
+
     private void Start()
     {
-        foreach (EnemyBase enemy in _enemyBases)
+        foreach (EnemyBase enemy in _enemies)
             StartInitializeDictionory(enemy);
+        foreach (var enemy in _enemies)
+            enemyPlaners[enemy].OnEnable(enemy.context);
     } 
     void Update()
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
             stateMachine.UpdateState();
-        foreach (EnemyBase enemy in _enemyBases)
+        foreach (EnemyBase enemy in _enemies)
             enemyPlaners[enemy].UpdateContext(enemy.context);
+
+        player._stateHandler.UpdateState();
 
 
     }
     private void LateUpdate()
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
-            stateMachine.LateUpdateState();        
+            stateMachine.LateUpdateState();
+        player._stateHandler.LateUpdateState();
     }
     private void FixedUpdate()
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
             stateMachine.FixedUpdateState();
+        player._stateHandler.FixedUpdateState();
     }
 
     private void StartInitializeDictionory(EnemyBase enemy)
@@ -59,7 +64,7 @@ public class MainUpdate : MonoBehaviour
         var behaviourHandler = new BehaviourHandler();
         var planer = new PlanerMove();
 
-        InitializeBexaviours(enemy, behaviourHandler);
+        InitializeBehaviours(enemy, behaviourHandler);
         InitializeStates(stateMachine, behaviourHandler, enemy);
         InitializePlaner(stateMachine, planer);
         stateMachine.SetState(EnemyStateType.Idel);
@@ -70,7 +75,7 @@ public class MainUpdate : MonoBehaviour
     }
 
 
-    private void InitializeBexaviours(EnemyBase enemy, IBehaviourHandler behaviourHandler)
+    private void InitializeBehaviours(EnemyBase enemy, IBehaviourHandler behaviourHandler)
     {
         behaviourHandler.RegisteringBehaviour<IIdleBehaviour>(new IdleBehaviour(enemy));
 

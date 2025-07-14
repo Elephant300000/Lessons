@@ -7,7 +7,7 @@ public class RandomMoveBehaviour : MoveBehaviour
     public override void ExitBexaviour() { } 
     public override void UpdateBexaviour() { } 
     public override void LateUpdateBexaviour() { } 
-    public override void FixedUpdateBexaviour()
+    public override void FixedUpdateBehaviour()
     {
         RandomMove();
     } 

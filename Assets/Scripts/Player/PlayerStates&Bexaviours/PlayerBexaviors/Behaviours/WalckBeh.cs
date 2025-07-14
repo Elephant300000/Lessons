@@ -11,16 +11,15 @@ namespace Player.PlayerBehaviours.Behaviours
     {
         public override void EneterBexaviour()
         {
-            InputMove(new InputAction.CallbackContext());
         }
 
         public override void ExitBexaviour()
         {
-            InputMove(new InputAction.CallbackContext());
         }
 
-        public override void FixedUpdateBexaviour()
+        public override void FixedUpdateBehaviour()
         {
+            InputMove(new InputAction.CallbackContext());
         }
 
         public override void InputMove(InputAction.CallbackContext ctx)
