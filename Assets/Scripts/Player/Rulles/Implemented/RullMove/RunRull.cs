@@ -1,16 +1,18 @@
 using Character.Context;
 using Player.PlayerStates.Base;
+using Player.PlayerStates.StateHandler;
 
 namespace Character.Rull
 {
-    public class RunRull : IRull<IMoveContext> 
+    public class RunRull : MoveRullBase
     {
-        public bool CanExecute(IMoveContext ctx) => ctx.isRunning;
-
-        public void Execute(IMoveContext ctx)
-        {
+        public RunRull(IPlayerStateHandler fsm) : base(fsm) { }
+         
+        public override bool CanExecute(IMoveContext ctx) => ctx.isRunning; 
+        public override void Execute(IMoveContext ctx)
+        { 
             ctx.SetMoveType(MoveStateType.Run);
-            ctx.InvokeAction(); 
+            ctx.InvokeAction();
         }
     }
 }

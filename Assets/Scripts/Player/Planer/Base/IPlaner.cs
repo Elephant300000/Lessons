@@ -5,11 +5,12 @@ using Character.Rull;
 
 namespace Character.Planer
 {
-    public interface IPlaner 
+    public interface IPlaner<T> where T : IContextBase
     {
-        void AddRull(IRull<IContextBase> rull);
-
-        void RunNextRull(IContextBase ctx);
+        void Enter(T ctx);
+        void Exit(T ctx);
+        void AddRull(IRullBase<T> rull); 
+        void RunNextRull(T ctx);
     }
 
 }

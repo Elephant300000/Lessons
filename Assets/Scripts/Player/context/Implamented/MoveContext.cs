@@ -4,7 +4,24 @@ namespace Character.Context
 {
     public class MoveContext : IMoveContext
     {
-        public event Action<MoveStateType> onChangeState;
+        MoveStateType _currentStateType;
+        public MoveStateType currentMoveType => _currentStateType;
+
+        public event Action<MoveStateType> onChangeMoveState;
+
+        public void InvokeAction()
+        {
+            onChangeMoveState?.Invoke(currentMoveType);
+        }
+
+        public void SetMoveType(MoveStateType moveStateType)
+        {
+            if (moveStateType == _currentStateType) return;
+            _currentStateType = moveStateType;
+        }
+
+
+
 
         bool _isIdle;
         public bool isIdle => _isIdle;
@@ -18,23 +35,16 @@ namespace Character.Context
         bool _isSprinting ;
         public bool isSprinting => _isSprinting;
 
-        MoveStateType _currentStateType;
-        public MoveStateType currentStateType => _currentStateType;
+      
+  
 
         public void Enter()
         { 
         }
 
         public void Exit()
-        {
-            
+        { 
         }
-
-        public void InvokeAction(MoveStateType type)
-        {
-            onChangeState?.Invoke(type);
-        }
-         
 
         public void SetIdle(bool isIdle)
         {
@@ -54,7 +64,6 @@ namespace Character.Context
         public void SetSPrint(bool isSprint)
         {
             _isSprinting = isSprint;
-        }
- 
+        }  
     }
 }

@@ -38,7 +38,7 @@ public class MainUpdate : MonoBehaviour
         foreach (EnemyBase enemy in _enemies)
             enemyPlaners[enemy].UpdateContext(enemy.context);
 
-        player._stateHandler.UpdateState();
+        //player._stateHandler.UpdateState();
 
 
     }
@@ -46,13 +46,13 @@ public class MainUpdate : MonoBehaviour
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
             stateMachine.LateUpdateState();
-        player._stateHandler.LateUpdateState();
+        //player._stateHandler.LateUpdateState();
     }
     private void FixedUpdate()
     {
         foreach (IStateMachine stateMachine in _enemyStateMachines.Values)
             stateMachine.FixedUpdateState();
-        player._stateHandler.FixedUpdateState();
+        //player._stateHandler.FixedUpdateState();
     }
 
     private void StartInitializeDictionory(EnemyBase enemy)

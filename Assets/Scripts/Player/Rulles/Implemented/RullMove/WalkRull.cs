@@ -1,13 +1,17 @@
 using Character.Context;
 using Player.PlayerStates.Base;
+using Player.PlayerStates.StateHandler;
 
 namespace Character.Rull
 {
-    public class WalkRull : IRull<IMoveContext>
+    public class WalkRull : MoveRullBase
     {
-        public bool CanExecute(IMoveContext ctx) => ctx.isWalking;
+        public WalkRull(IPlayerStateHandler fsm) : base(fsm) { }
+         
+        public override bool CanExecute(IMoveContext ctx) => ctx.isWalking;
+         
 
-        public void Execute(IMoveContext ctx)
+        public override void Execute(IMoveContext ctx)
         {
             ctx.SetMoveType(MoveStateType.Walk);
             ctx.InvokeAction();

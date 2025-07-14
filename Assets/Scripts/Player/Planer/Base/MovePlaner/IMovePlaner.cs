@@ -6,7 +6,7 @@ using Character.Rull;
 
 namespace Character.Planer
 {
-    public interface IMovePlaner : IPlaner
+    public interface IMovePlaner : IPlaner<IMoveContext>
     {
 
     }

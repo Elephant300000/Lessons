@@ -8,15 +8,28 @@ namespace Character.Planer
 {
     public class MovePlaner : IMovePlaner
     {
-        private readonly List<IRull<IContextBase>> ruless = new List<IRull<IContextBase>>();
-        public void AddRull(IRull<IContextBase> rull)
+        private readonly List<IRullBase<IMoveContext>> rulless = new();
+       
+        public void AddRull(IRullBase<IMoveContext> rull)// coll from Main
         {
-            ruless.Add(rull);
+            rulless.Add(rull);
         }
 
-        public void RunNextRull(IContextBase ctx)
+        public void Enter(IMoveContext ctx) // coll from Main
         {
-            foreach (var rull in ruless)
+            foreach (var rull in rulless)
+                rull.Subscrube(ctx);
+        }
+
+        public void Exit(IMoveContext ctx)// coll from Main
+        {
+            foreach (var rull in rulless)
+                rull.Unubscrube(ctx);
+        }
+
+        public void RunNextRull(IMoveContext ctx)// coll from Main
+        {
+            foreach (var rull in rulless)
             {
                 if (rull.CanExecute(ctx))
                 {

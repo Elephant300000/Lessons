@@ -8,10 +8,7 @@ namespace Character.Context
 {
     public interface IStateMoveContext : IContextBase
     {
-        MoveStateType currentStateType
-        {
-            get;
-        }
+        MoveStateType currentMoveType { get; }
         bool isIdle { get; }
         bool isWalking { get; }
         bool isRunning { get; }
