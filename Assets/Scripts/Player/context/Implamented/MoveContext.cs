@@ -4,19 +4,24 @@ namespace Character.Context
 {
     public class MoveContext : IMoveContext
     {
-        MoveStateType _currentStateType;
-        public MoveStateType currentMoveType => _currentStateType;
 
-        MoveStateType IStateMoveContext.currentMoveType { get => currentMoveType; set => throw new NotImplementedException(); }
-        public bool isIdle 
-        { get;
-        set; }
-        public bool isMove 
-        { get; 
-        set; }
-        public bool isJump 
-        { get;
-        set; }
+        private MoveStateType _currentMoveType;
+
+        public MoveStateType currentMoveType => _currentMoveType;
+
+ 
+
+        bool _isWalking ;
+        public bool isWalking => _isWalking;
+
+
+        public bool isSprinting => throw new NotImplementedException();
+
+        public bool isIdle => throw new NotImplementedException();
+
+        public bool isRunning => throw new NotImplementedException();
+
+        public bool isJump => throw new NotImplementedException();
 
         public event Action<MoveStateType> onChangeMoveState;
 
@@ -27,15 +32,10 @@ namespace Character.Context
 
         public void SetMoveType(MoveStateType moveStateType)
         {
-            if (moveStateType == _currentStateType) return;
-            _currentStateType = moveStateType;
+            if (moveStateType == _currentMoveType) return;
+            _currentMoveType = moveStateType;
         }
-
-
-
-
-        
-
+         
         public void Enter()
         { 
         }
@@ -46,17 +46,17 @@ namespace Character.Context
 
         public void SetIdle(bool isIdle)
         {
-            this.isIdle = isIdle;
+            //this._isIdle = isIdle;
         }
 
         public void SetJump(bool isJump)
         {
-            this.isJump = isJump;
+            //this._isJump = isJump;
         }
 
         public void SetMove(bool isMove)
         {
-            this.isMove = isMove;
+            //this._isRunning = isMove;
         }
 
         

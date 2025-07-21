@@ -1,27 +1,17 @@
-using Player.PlayerBehaviours.Behaviours;
-using Player.PlayerBehaviours.Handler;
 using Player.PlayerStates.Base;
-using Player.PlayerStates.StateHandler;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+
 namespace Player.PlayerStates.States
 {
-    public class MoveStatePlayer : PlayerStateBase
+    public class RunStatePlayer : PlayerStateBase
     {
-        public MoveStatePlayer(
-
-       IBehaviourHandler behaviourHandler,
-       PlayerInfo pl
-       ) : base( behaviourHandler, pl)
+        public RunStatePlayer(IBehaviourHandler behaviourHandler) : base(behaviourHandler)
         {
             behaviours = new List<IBehaviourBase>()
-        {
-            behaviourHandler.GetBehaviour<RunBehaviourPlayer>(),
-            behaviourHandler.GetBehaviour<ShootBeh>(),
-            behaviourHandler.GetBehaviour<WalckBehaviourPlayer>(),
-
-        };
+            {  
+                // behaviours
+            };
         }
 
         public override void EnterState()

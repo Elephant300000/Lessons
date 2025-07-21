@@ -9,7 +9,7 @@ namespace Character.Planer
     {
         void Initialize(T ctx);
         void Dispose(T ctx);
-        void AddRule(IRullBase<T> rull); 
+        void RegisterRule(IRullBase<T> rull); 
         void RunNextRull(T ctx);
     }
 

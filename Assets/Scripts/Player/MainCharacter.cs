@@ -1,34 +1,40 @@
 using Character.Context;
 using Character.Planer;
+using Character.Rull;
 using Player.PlayerBehaviours.Behaviours;
 using Player.PlayerInterfases;
+using Player.PlayerStates.Base;
 using Player.PlayerStates.StateHandler;
 using Player.PlayerStates.States;
-using Player.PlayerStates.Base;
-using Character.Rull;
-public class MainCharacter  
+
+
+public class MainCharacter  // проинициализировать в main global
 {
+    // context аргумент в конструткоре main не через new MoveContext
+    // а через PlayerInfo.contextMove
+    // new PlayerInfo
     public MainCharacter(
 
        PlayerInfo charac, 
        IBehaviourHandler behaviourHandler,
-       IMoveContext contextMove )
+       IMoveContext contextMove,
+       IStateHandler moveFSM,
+       IPlaner<IMoveContext> planer)
     {
 
         this.character = charac; 
         this.behaviourHandler = behaviourHandler;
-        this.contextMove = contextMove;
-
-        planer = new Character.Planer.PlanerMove();
-        moveFSM = new PlayerFSM(); 
+        this.contextMove = contextMove; 
+        this.planer = planer;
+        this.fsm = moveFSM; 
     }
 
-    private PlayerInfo character; 
-
+    private PlayerInfo character;  
     private IBehaviourHandler behaviourHandler;
     private IMoveContext contextMove; 
+    private IStateHandler fsm;
     private IPlaner<IMoveContext> planer;  
-    private IStateHandler moveFSM; 
+
 
     public void Initialize()
     {
@@ -44,47 +50,50 @@ public class MainCharacter
     }
     private void InitializeRules()
     {
-        planer.AddRule(new IdleRule(moveFSM));
-        //planer.AddRule(new WalkRule(moveFSM));// где этот класс 
-        planer.AddRule(new RunRule(moveFSM));
-        //planer.AddRule(new SprintRule(moveFSM));// где этот класс
+        //planer.RegisterRule(new IdleRule(fsm));
+        //planer.RegisterRule(new WalkRule(fsm));// где этот класс 
+        //planer.RegisterRule(new RunRule(fsm));
+        //planer.RegisterRule(new SprintRule(fsm));// где этот класс
     }
+ 
     private void InitializeBehaviours()
     {
-        behaviourHandler.RegisterBehaviour<IIdleBehaviourPlayer>(new IdelBehaviourPlayer(character));
-        //behaviourHandler.RegisterBehaviour<IWalkBehaviour>(new WalckBehaviourPlayer(character));// где этот Interface ???
-        behaviourHandler.RegisterBehaviour<IRunBehaviourPlayer>(new RunBehaviourPlayer(character));// где этот класс
-        //behaviourHandler.RegisterBehaviour<ISprintBehaviour>(new SprintBehaviourPlayer(character));// где этот класс и Interface ???
-       // behaviourHandler.RegisterBehaviour<IJumpBehaviour>(new JumpBehaviourPlayer(characterMove));// где этот Interface ???
+       //behaviourHandler.RegisterBehaviour<IIdleBehaviourPlayer>(new IdelBehaviourPlayer(character));
+       //behaviourHandler.RegisterBehaviour<IWalkBehaviour>(new WalckBehaviourPlayer(character));// где этот Interface ???
+       //behaviourHandler.RegisterBehaviour<IRunBehaviourPlayer>(new RunBehaviourPlayer(character));// где этот класс
+       //behaviourHandler.RegisterBehaviour<ISprintBehaviour>(new SprintBehaviourPlayer(character));// где этот класс и Interface ???
+       //behaviourHandler.RegisterBehaviour<IJumpBehaviour>(new JumpBehaviourPlayer(characterMove));// где этот Interface ???
 
-        //behaviourHandler.RegisterBehaviour<IMoveBehaviourPlayer>(new MoveBehaviourPlayer(character));// где этот класс  
-        //behaviourHandler.RegisterBehaviour<IRotateBehaviour>(new RotateBehaviourPlayer(character));// где этот класс
+       //behaviourHandler.RegisterBehaviour<IMoveBehaviourPlayer>(new MoveBehaviourPlayer(character));// где этот класс  
+       //behaviourHandler.RegisterBehaviour<IRotateBehaviour>(new RotateBehaviourPlayer(character));// где этот класс
 
     }
 
     private void InitializeStates()
     {
-        moveFSM.RegisteringState(MoveStateType.Idle, new IdleStatePlayer(behaviourHandler, character));
-       // moveFSM.RegisteringState(MoveStateType.Walking, new WalkStatePlayer(behaviourHandler, character)); // где этот класс - WalkStatePlayer ???
-       // moveFSM.RegisteringState(MoveStateType.Running, new RunStatePlayer(behaviourHandler, character));// где этот класс - RunStatePlayer ??
-       // moveFSM.RegisteringState(MoveStateType.Sprinting, new SprintStatePlayer(behaviourHandler, character));// где этот класс - SprintStatePlayer ??
-        moveFSM.SetState(MoveStateType.Idle);
+       //fsm.RegisteringState(MoveStateType.Idle, new IdleStatePlayer(behaviourHandler));
+       //fsm.RegisteringState(MoveStateType.Walking, new WalkStatePlayer(behaviourHandler)); // где этот класс - WalkStatePlayer ???
+       //fsm.RegisteringState(MoveStateType.Running, new RunStatePlayer(behaviourHandler));// где этот класс - RunStatePlayer ??
+       //fsm.RegisteringState(MoveStateType.Sprinting, new SprintStatePlayer(behaviourHandler));// где этот класс - SprintStatePlayer ??
+       //fsm.SetState(MoveStateType.Idle);
     }
     public void FixedTick()
     {
-        moveFSM.FixedUpdateState(); 
+        fsm.FixedUpdateState(); 
     }
 
     public void LateTick()
     {
-        moveFSM.LateUpdateState(); 
+        fsm.LateUpdateState(); 
     }
 
     public void Tick()
     {
-        planer?.RunNextRull(contextMove); 
-          
-        moveFSM.UpdateState(); 
+        planer?.RunNextRull(contextMove);
+        fsm.UpdateState(); 
     }
 
 }
+
+
+

@@ -4,14 +4,12 @@ namespace Player.PlayerStates.Base
 {
     public abstract class PlayerStateBase : IStateMove
     {
-        public PlayerStateBase(IBehaviourHandler behaviourHandler, PlayerInfo pl)
+        public PlayerStateBase(IBehaviourHandler behaviourHandler)
         {
             this.behaviourHandler = behaviourHandler;
-            this.pl = pl;
         }
 
         public IBehaviourHandler behaviourHandler;
-        public PlayerInfo pl;
 
         protected List<IBehaviourBase> behaviours = new();
         public abstract void EnterState();

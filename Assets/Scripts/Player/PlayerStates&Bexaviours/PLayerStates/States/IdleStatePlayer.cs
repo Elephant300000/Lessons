@@ -7,13 +7,13 @@ namespace Player.PlayerStates.States
 {
     public class IdleStatePlayer : PlayerStateBase
     {
-        public IdleStatePlayer(IBehaviourHandler behaviourHandler, PlayerInfo pl) : base(behaviourHandler, pl)
+        public IdleStatePlayer(IBehaviourHandler behaviourHandler) : base(behaviourHandler)
         {
 
             behaviours = new List<IBehaviourBase>()
             {
-                behaviourHandler.GetBehaviour<IdelBehaviourPlayer>(),
-                behaviourHandler.GetBehaviour<ShootBeh>(),
+                behaviourHandler.GetBehaviour<IdelBehaviourPlayer>()
+               //jump, rotate 
             };
         }
 

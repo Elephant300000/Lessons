@@ -2,7 +2,7 @@ using Player.PlayerStates.Base;
 
 namespace Character.Context
 {
-    public interface IMoveContext  :  IEventMoveContext, IStateMoveContext,IMoveCommandContext
+    public interface IMoveContext  :  IEventMoveContext, IStateMoveContext, IMoveCommandContext
     {
         
     } 

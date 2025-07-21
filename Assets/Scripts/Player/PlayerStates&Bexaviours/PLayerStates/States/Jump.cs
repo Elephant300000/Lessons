@@ -3,21 +3,15 @@ using Player.PlayerStates.Base;
 using System.Collections.Generic;
 namespace Player.PlayerStates.States
 {
-    public class Jump : PlayerStateBase
+    public class Jump : PlayerStateBase // jump не нужен
     {
-        public Jump(
-
-         IBehaviourHandler behaviourHandler,
-         PlayerInfo pl
-         ) : base(behaviourHandler, pl)
+        public Jump(IBehaviourHandler behaviourHandler) : base(behaviourHandler)
         {
             behaviours = new List<IBehaviourBase>()
-        {
-            behaviourHandler.GetBehaviour<ShootBeh>(),
-            behaviourHandler.GetBehaviour<JumpBehaviourPlayer>(),
-            behaviourHandler.GetBehaviour<RunBehaviourPlayer>()
-
-        };
+            {
+                behaviourHandler.GetBehaviour<IdelBehaviourPlayer>(),
+                behaviourHandler.GetBehaviour<ShootBeh>(),
+            };
         }
 
         public override void EnterState()

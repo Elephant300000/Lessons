@@ -10,6 +10,7 @@ namespace Player.PlayerBehaviours.Base
        IRunBehaviourPlayer,
        IWeaponHolder,
        IBehaviourBase 
+        // добавать Sprint,Walk,Jump
     {
         public BehaviourPlayerBase(PlayerInfo playerInfo)
         {

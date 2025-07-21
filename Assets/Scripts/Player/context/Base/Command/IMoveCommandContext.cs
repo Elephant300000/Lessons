@@ -1,7 +1,4 @@
 using Player.PlayerStates.Base;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace Character.Context 
@@ -12,5 +9,6 @@ namespace Character.Context
         void SetJump(bool isJump);
         void SetMove(bool isMove);
         void SetMoveType(MoveStateType moveStateType);
+        /// добавить Setrun Setsprint Setwalk
     }
 }

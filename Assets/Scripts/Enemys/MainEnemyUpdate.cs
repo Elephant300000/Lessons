@@ -4,16 +4,18 @@ using State.EnemyState;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainUpdate : MonoBehaviour
+public class MainEnemyUpdate : MonoBehaviour /// // проинициализировать в main global
 {
+    // создвть конструктор
+
     private Dictionary<EnemyBase, IStateMachine> _enemyStateMachines = new(); 
     private Dictionary<EnemyBase, IBehaviourHandler> _behaviourHandlers = new();
-    private Dictionary<EnemyBase, PlanerMove> enemyPlaners = new();
+    private Dictionary<EnemyBase, PlanerMoveEnemy> enemyPlaners = new();
     private List<EnemyBase> _enemies = new();
      
     private void Awake()
-    { 
-        _enemies.AddRange(FindObjectsOfType<EnemyBase>());
+    { //в main galobal передать аргумент в конструктор
+        _enemies.AddRange(FindObjectsOfType<EnemyBase>()); 
         foreach (EnemyBase enemy in _enemies)
             StartInitializeDictionory(enemy);
     }
@@ -50,8 +52,8 @@ public class MainUpdate : MonoBehaviour
     private void StartInitializeDictionory(EnemyBase enemy)
     {
         var stateMachine = new EnemyStateMachine();
-        var behaviourHandler = new BehaviourHandler();
-        var planer = new PlanerMove();
+        var behaviourHandler = new EnemyBehaviourHandler();
+        var planer = new PlanerMoveEnemy();
 
         InitializeBehaviours(enemy, behaviourHandler);
         InitializeStates(stateMachine, behaviourHandler, enemy);
@@ -83,7 +85,7 @@ public class MainUpdate : MonoBehaviour
         _stateMachine.RegisteringState(EnemyStateType.Move, new MoveState(_stateMachine, behaviourHandler, enemy));
         _stateMachine.RegisteringState(EnemyStateType.Follow, new FollowTargetState(_stateMachine, behaviourHandler, enemy)); 
     }
-    public void InitializePlaner(IStateMachine _stateMachine, PlanerMove planerMove)
+    public void InitializePlaner(IStateMachine _stateMachine, PlanerMoveEnemy planerMove)
     {
         planerMove.RegistrAction(new ActionMove(_stateMachine));
     }

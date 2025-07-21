@@ -8,7 +8,7 @@ namespace Character.Rull
     {
         public RunRule(IStateHandler fsm) : base(fsm) { }
          
-        public override bool CanExecute(IMoveContext ctx) => ctx.isMove & !ctx.isJump; 
+        public override bool CanExecute(IMoveContext ctx) => ctx.isRunning & !ctx.isJump; 
         public override void Execute(IMoveContext ctx)
         { 
             ctx.SetMoveType(MoveStateType.Running);

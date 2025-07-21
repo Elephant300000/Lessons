@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class BehaviourHandler : IBehaviourHandler
+public class EnemyBehaviourHandler : IBehaviourHandler
 {
     private readonly Dictionary<Type, IBehaviourBase> bexaviours = new();
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Input : MonoBehaviour
 {
     private InputMap _InputMap;
-    private MainUpdate _MainUpdate;
+    private MainEnemyUpdate _MainUpdate;
     //private void OnEnable()
     //{
     //    _MainUpdate = FindAnyObjectByType<MainUpdate>(); 

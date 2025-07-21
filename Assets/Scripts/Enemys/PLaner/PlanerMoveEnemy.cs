@@ -5,7 +5,8 @@ using Enemy.Context;
 using Enemy.Action_;
 using System;
 
-public class PlanerMove
+
+public class PlanerMoveEnemy
 {
     public List<IAction> actions = new List<IAction>();
     public void RegistrAction (IAction action) => actions.Add(action);
