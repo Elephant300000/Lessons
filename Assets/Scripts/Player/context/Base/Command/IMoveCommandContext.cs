@@ -9,9 +9,8 @@ namespace Character.Context
     public interface IMoveCommandContext  : IContextBase
     { 
         void SetIdle(bool isIdle);
-        void SetWalk(bool isWalk);
-        void SetRun(bool isRun);
-        void SetSPrint(bool isSprint);
+        void SetJump(bool isJump);
+        void SetMove(bool isMove);
         void SetMoveType(MoveStateType moveStateType);
     }
 }

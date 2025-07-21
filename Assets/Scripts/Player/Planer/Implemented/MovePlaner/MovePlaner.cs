@@ -10,7 +10,7 @@ namespace Character.Planer
     {
         private readonly List<IRullBase<IMoveContext>> rulless = new();
        
-        public void AddRull(IRullBase<IMoveContext> rull)// coll from Main
+        public void AddRule(IRullBase<IMoveContext> rull)// coll from Main
         {
             rulless.Add(rull);
         }

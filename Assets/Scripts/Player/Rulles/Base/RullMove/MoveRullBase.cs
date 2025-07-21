@@ -7,17 +7,17 @@ namespace Character.Rull
     {
         public MoveRullBase(IPlayerStateHandler fsm)
         {
-            this.fsm = fsm;
+            this._fsm = fsm;
         }
-        IPlayerStateHandler fsm;
+        protected IPlayerStateHandler _fsm;
         public void Subscrube(IMoveContext ctx)
         {
-            ctx.onChangeMoveState += fsm.SetState;
+            ctx.onChangeMoveState += _fsm.SetState;
         }
 
         public void Unubscrube(IMoveContext ctx)
         {
-            ctx.onChangeMoveState -= fsm.SetState;
+            ctx.onChangeMoveState -= _fsm.SetState;
         }
         public abstract bool CanExecute(IMoveContext ctx);
 

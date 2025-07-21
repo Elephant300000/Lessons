@@ -4,11 +4,11 @@ using Player.PlayerStates.StateHandler;
 
 namespace Character.Rull
 {
-    public class IdleRull : MoveRullBase 
+    public class IdleRule : MoveRullBase 
     {
-        public IdleRull(IPlayerStateHandler fsm) : base(fsm) { }
+        public IdleRule(IPlayerStateHandler fsm) : base(fsm) { }
 
-        public override bool CanExecute(IMoveContext ctx) => ctx.isIdle;
+        public override bool CanExecute(IMoveContext ctx) => ctx.isIdle& !ctx.isJump;
 
         public override void Execute(IMoveContext ctx)
         {

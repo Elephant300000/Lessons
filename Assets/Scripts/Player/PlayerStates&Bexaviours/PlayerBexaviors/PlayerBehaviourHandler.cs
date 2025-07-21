@@ -5,7 +5,7 @@ using System;
 
 namespace Player.PlayerBehaviours.Handler
 {
-    public class BehaviourHandler : IBehaviourHandler
+    public class PlayerBehaviourHandler : IBehaviourHandler
     {
         private readonly Dictionary<Type, IBehaviourBase> bexaviours = new();
 
@@ -20,13 +20,5 @@ namespace Player.PlayerBehaviours.Handler
             bexaviours.Add(typeof(T), behaviour);
         }
     }
-    public interface IBehaviourHandler
-    {
-        void RegisteringBehaviour<T>(T behaviour)
-            where T : class, IBehaviourBase;
-
-        T GetBehaviour<T>()
-            where T : class, IBehaviourBase;
-
-    }
+    
 }

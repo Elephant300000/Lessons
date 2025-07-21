@@ -1,3 +1,4 @@
+using Player.PlayerBehaviours.Handler;
 using Player.PlayerStates.StateHandler;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,8 +40,7 @@ namespace Player.PlayerStates.Base
     public enum MoveStateType
     {
         Idle,
-        Walk,
-        Run,
-        Sprint 
+        Move,
+        Jump 
     }
 }

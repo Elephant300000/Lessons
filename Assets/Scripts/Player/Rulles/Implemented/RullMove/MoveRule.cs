@@ -4,14 +4,14 @@ using Player.PlayerStates.StateHandler;
 
 namespace Character.Rull
 {
-    public class RunRull : MoveRullBase
+    public class MoveRule : MoveRullBase
     {
-        public RunRull(IPlayerStateHandler fsm) : base(fsm) { }
+        public MoveRule(IPlayerStateHandler fsm) : base(fsm) { }
          
-        public override bool CanExecute(IMoveContext ctx) => ctx.isRunning; 
+        public override bool CanExecute(IMoveContext ctx) => ctx.isMove & !ctx.isJump; 
         public override void Execute(IMoveContext ctx)
         { 
-            ctx.SetMoveType(MoveStateType.Run);
+            ctx.SetMoveType(MoveStateType.Move);
             ctx.InvokeAction();
         }
     }
