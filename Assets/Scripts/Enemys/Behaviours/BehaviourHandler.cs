@@ -12,7 +12,7 @@ public class BehaviourHandler : IBehaviourHandler
         return bexaviours.TryGetValue(typeof(T), out var behaviour) ? behaviour as T : null;
     }
 
-    void IBehaviourHandler.RegisteringBehaviour<T>(T behaviour)   
+    void IBehaviourHandler.RegisterBehaviour<T>(T behaviour)   
     {
         if (behaviour == null || bexaviours.ContainsKey(typeof(T))) return;
         bexaviours.Add(typeof(T),behaviour);

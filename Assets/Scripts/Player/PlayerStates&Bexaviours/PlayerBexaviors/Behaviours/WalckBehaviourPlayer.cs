@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Player.PlayerBehaviours.Base;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.PlayerBehaviours.Behaviours
 {
 
-    public class JumpBeh : BehavioursBase
+    public class WalckBehaviourPlayer : BehaviourPlayerBase
     {
+        public WalckBehaviourPlayer(PlayerInfo playerInfo) : base(playerInfo)
+        {
+        }
+
         public override void EneterBexaviour()
         {
         }
@@ -18,12 +21,12 @@ namespace Player.PlayerBehaviours.Behaviours
 
         public override void FixedUpdateBehaviour()
         {
-            Jump();
+            InputMove(new InputAction.CallbackContext());
         }
 
-        public override void Jump()
+        public override void InputMove(InputAction.CallbackContext ctx)
         {
-            Debug.Log("Jump");
+            Debug.Log("Walk");
         }
 
         public override void LateUpdateBexaviour()

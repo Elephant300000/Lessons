@@ -1,27 +1,21 @@
-using Player.PlayerBehaviours.Base;
 using Player.PlayerBehaviours.Behaviours;
 using Player.PlayerStates.Base;
-using Player.PlayerStates.StateHandler;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 namespace Player.PlayerStates.States
 {
     public class Jump : PlayerStateBase
     {
         public Jump(
 
-         IPlayerStateHandler _stateHandler,
          IBehaviourHandler behaviourHandler,
          PlayerInfo pl
-         ) : base(_stateHandler, behaviourHandler, pl)
+         ) : base(behaviourHandler, pl)
         {
             behaviours = new List<IBehaviourBase>()
         {
             behaviourHandler.GetBehaviour<ShootBeh>(),
-            behaviourHandler.GetBehaviour<JumpBeh>(),
-            behaviourHandler.GetBehaviour<RunBeh>()
+            behaviourHandler.GetBehaviour<JumpBehaviourPlayer>(),
+            behaviourHandler.GetBehaviour<RunBehaviourPlayer>()
 
         };
         }

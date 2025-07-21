@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Player.PlayerBehaviours.Base;
+using UnityEngine;
 using UnityEngine.InputSystem;
+
 namespace Player.PlayerBehaviours.Behaviours
 {
-    public class RunBeh : BehavioursBase
+    public class RunBehaviourPlayer : BehaviourPlayerBase
     {
+        public RunBehaviourPlayer(PlayerInfo playerInfo) : base(playerInfo)
+        {
+        }
+
         public override void EneterBexaviour()
         {
         }

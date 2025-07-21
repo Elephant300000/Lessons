@@ -6,7 +6,7 @@ namespace Character.Rull
 {
     public class IdleRule : MoveRullBase 
     {
-        public IdleRule(IPlayerStateHandler fsm) : base(fsm) { }
+        public IdleRule(IStateHandler fsm) : base(fsm) { }
 
         public override bool CanExecute(IMoveContext ctx) => ctx.isIdle& !ctx.isJump;
 

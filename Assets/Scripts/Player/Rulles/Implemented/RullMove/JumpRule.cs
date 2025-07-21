@@ -6,7 +6,7 @@ namespace Character.Rull
 {
     public  class JumpRule : MoveRullBase
     {
-        public JumpRule(IPlayerStateHandler fsm) : base(fsm) { }
+        public JumpRule(IStateHandler fsm) : base(fsm) { }
 
         public override bool CanExecute(IMoveContext ctx) => ctx.isJump;
         public override void Execute(IMoveContext ctx)

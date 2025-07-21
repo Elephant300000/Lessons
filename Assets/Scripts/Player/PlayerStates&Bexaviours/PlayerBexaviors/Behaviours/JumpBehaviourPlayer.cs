@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Player.PlayerBehaviours.Base;
+using UnityEngine;
 
 namespace Player.PlayerBehaviours.Behaviours
 {
-    public class IdelBeh : BehavioursBase
+
+    public class JumpBehaviourPlayer : BehaviourPlayerBase
     {
+        public JumpBehaviourPlayer(PlayerInfo playerInfo) : base(playerInfo)
+        {
+        }
+
         public override void EneterBexaviour()
         {
         }
@@ -15,14 +18,14 @@ namespace Player.PlayerBehaviours.Behaviours
         {
         }
 
-        public override void FixedUpdateBehaviour() 
+        public override void FixedUpdateBehaviour()
         {
-            Idel();
+            Jump();
         }
 
-        public override void Idel()
+        public override void Jump()
         {
-            Debug.Log("Idel");
+            Debug.Log("Jump");
         }
 
         public override void LateUpdateBexaviour()

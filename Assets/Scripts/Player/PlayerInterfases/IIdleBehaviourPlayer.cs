@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Player.PlayerInterfases
 {
-    public interface IPlayerIdel : IBehaviourBase
+    public interface IIdleBehaviourPlayer : IBehaviourBase
     {
         void Idel();
     }

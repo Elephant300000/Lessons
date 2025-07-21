@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Player.PlayerBehaviours.Base;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
 namespace Player.PlayerBehaviours.Behaviours
 {
-
-    public class WalckBeh : BehavioursBase
+    public class IdelBehaviourPlayer : BehaviourPlayerBase
     {
+        public IdelBehaviourPlayer(PlayerInfo playerInfo) : base(playerInfo)
+        {
+        }
+
         public override void EneterBexaviour()
         {
         }
@@ -17,14 +17,14 @@ namespace Player.PlayerBehaviours.Behaviours
         {
         }
 
-        public override void FixedUpdateBehaviour()
+        public override void FixedUpdateBehaviour() 
         {
-            InputMove(new InputAction.CallbackContext());
+            Idel();
         }
 
-        public override void InputMove(InputAction.CallbackContext ctx)
+        public override void Idel()
         {
-            Debug.Log("Walk");
+            Debug.Log("Idel");
         }
 
         public override void LateUpdateBexaviour()

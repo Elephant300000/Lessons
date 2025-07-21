@@ -1,17 +1,22 @@
 using Player.PlayerInterfases;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
+
+
 namespace Player.PlayerBehaviours.Base
 {
-    public abstract class BehavioursBase : 
-       IPlayerIdel,
-       IPlayerMove,
-       IPlayerRun,
+    public abstract class BehaviourPlayerBase : 
+       IIdleBehaviourPlayer,
+       IMoveBehaviourPlayer,
+       IRunBehaviourPlayer,
        IWeaponHolder,
        IBehaviourBase 
     {
+        public BehaviourPlayerBase(PlayerInfo playerInfo)
+        {
+            this.playerInfo = playerInfo;
+        }
+        protected readonly PlayerInfo playerInfo;
+
         public abstract void EneterBexaviour();
         public abstract void ExitBexaviour();
         public abstract void FixedUpdateBehaviour();

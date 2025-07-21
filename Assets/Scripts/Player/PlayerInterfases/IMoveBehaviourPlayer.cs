@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Player.PlayerInterfases
 {
-    public interface IPlayerMove : IBehaviourBase
+    public interface IMoveBehaviourPlayer : IBehaviourBase
     {
         void InputMove(InputAction.CallbackContext ctx);
         void Jump();

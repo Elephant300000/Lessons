@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Character.Planer
 {
-    public class MovePlaner : IMovePlaner
+    public class PlanerMove : IMovePlaner
     {
         private readonly List<IRullBase<IMoveContext>> rulless = new();
        
@@ -15,13 +15,13 @@ namespace Character.Planer
             rulless.Add(rull);
         }
 
-        public void Enter(IMoveContext ctx) // coll from Main
+        public void Initialize(IMoveContext ctx) // coll from Main
         {
             foreach (var rull in rulless)
                 rull.Subscrube(ctx);
         }
 
-        public void Exit(IMoveContext ctx)// coll from Main
+        public void Dispose(IMoveContext ctx)// coll from Main
         {
             foreach (var rull in rulless)
                 rull.Unubscrube(ctx);

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Player.PlayerBehaviours.Handler
 {
@@ -14,7 +12,7 @@ namespace Player.PlayerBehaviours.Handler
             return bexaviours.TryGetValue(typeof(T), out var behaviour) ? behaviour as T : null;
         }
 
-        void IBehaviourHandler.RegisteringBehaviour<T>(T behaviour)
+        void IBehaviourHandler.RegisterBehaviour<T>(T behaviour)
         {
             if (behaviour == null || bexaviours.ContainsKey(typeof(T))) return;
             bexaviours.Add(typeof(T), behaviour);

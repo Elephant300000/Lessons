@@ -5,8 +5,12 @@ using Player.PlayerBehaviours.Base;
 
 namespace Player.PlayerBehaviours.Behaviours
 {
-    public class ShootBeh : BehavioursBase
+    public class ShootBeh : BehaviourPlayerBase
     {
+        public ShootBeh(PlayerInfo playerInfo) : base(playerInfo)
+        {
+        }
+
         public override void EneterBexaviour()
         {
         }

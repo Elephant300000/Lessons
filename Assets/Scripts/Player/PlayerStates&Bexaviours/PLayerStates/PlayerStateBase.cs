@@ -1,21 +1,15 @@
-using Player.PlayerBehaviours.Handler;
-using Player.PlayerStates.StateHandler;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Player.PlayerStates.Base
 {
-    public abstract class PlayerStateBase : IAbstractState
+    public abstract class PlayerStateBase : IStateMove
     {
-        public PlayerStateBase(IPlayerStateHandler _stateHandler, IBehaviourHandler behaviourHandler, PlayerInfo pl)
+        public PlayerStateBase(IBehaviourHandler behaviourHandler, PlayerInfo pl)
         {
-            this._stateHandler = _stateHandler;
             this.behaviourHandler = behaviourHandler;
             this.pl = pl;
         }
 
-        protected readonly IPlayerStateHandler _stateHandler;
         public IBehaviourHandler behaviourHandler;
         public PlayerInfo pl;
 
@@ -28,7 +22,7 @@ namespace Player.PlayerStates.Base
     }
    
 
-    public interface IAbstractState
+    public interface IStateMove
     {
         void EnterState();
         void ExitState();
@@ -40,7 +34,9 @@ namespace Player.PlayerStates.Base
     public enum MoveStateType
     {
         Idle,
-        Move,
-        Jump 
+        Walking,
+        Running,
+        Sprinting,
+        Jump // не нужен 
     }
 }

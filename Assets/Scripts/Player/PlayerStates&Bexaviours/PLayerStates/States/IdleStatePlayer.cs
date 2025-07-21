@@ -1,28 +1,20 @@
 using Player.PlayerBehaviours.Behaviours;
-using Player.PlayerBehaviours.Handler;
 using Player.PlayerStates.Base;
-using Player.PlayerStates.StateHandler;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+
 namespace Player.PlayerStates.States
 {
-    public class Move : PlayerStateBase
+    public class IdleStatePlayer : PlayerStateBase
     {
-        public Move(
-
-       IPlayerStateHandler _stateHandler,
-       IBehaviourHandler behaviourHandler,
-       PlayerInfo pl
-       ) : base(_stateHandler, behaviourHandler, pl)
+        public IdleStatePlayer(IBehaviourHandler behaviourHandler, PlayerInfo pl) : base(behaviourHandler, pl)
         {
+
             behaviours = new List<IBehaviourBase>()
-        {
-            behaviourHandler.GetBehaviour<RunBeh>(),
-            behaviourHandler.GetBehaviour<ShootBeh>(),
-            behaviourHandler.GetBehaviour<WalckBeh>(),
-
-        };
+            {
+                behaviourHandler.GetBehaviour<IdelBehaviourPlayer>(),
+                behaviourHandler.GetBehaviour<ShootBeh>(),
+            };
         }
 
         public override void EnterState()
@@ -54,6 +46,6 @@ namespace Player.PlayerStates.States
                 behaviour.FixedUpdateBehaviour();
         }
 
-       
+      
     }
 }

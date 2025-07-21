@@ -7,8 +7,8 @@ namespace Character.Planer
 {
     public interface IPlaner<T> where T : IContextBase
     {
-        void Enter(T ctx);
-        void Exit(T ctx);
+        void Initialize(T ctx);
+        void Dispose(T ctx);
         void AddRule(IRullBase<T> rull); 
         void RunNextRull(T ctx);
     }

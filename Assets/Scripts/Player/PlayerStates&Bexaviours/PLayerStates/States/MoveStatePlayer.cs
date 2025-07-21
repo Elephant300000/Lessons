@@ -1,27 +1,26 @@
 using Player.PlayerBehaviours.Behaviours;
+using Player.PlayerBehaviours.Handler;
 using Player.PlayerStates.Base;
 using Player.PlayerStates.StateHandler;
-using State.EnemyState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 namespace Player.PlayerStates.States
 {
-    public class Idle : PlayerStateBase
+    public class MoveStatePlayer : PlayerStateBase
     {
-        
-        public Idle(
+        public MoveStatePlayer(
 
-        IPlayerStateHandler _stateHandler,
-        IBehaviourHandler behaviourHandler,
-        PlayerInfo pl
-        ) : base(_stateHandler, behaviourHandler, pl)
+       IBehaviourHandler behaviourHandler,
+       PlayerInfo pl
+       ) : base( behaviourHandler, pl)
         {
             behaviours = new List<IBehaviourBase>()
         {
-            behaviourHandler.GetBehaviour<IdelBeh>(),
+            behaviourHandler.GetBehaviour<RunBehaviourPlayer>(),
             behaviourHandler.GetBehaviour<ShootBeh>(),
+            behaviourHandler.GetBehaviour<WalckBehaviourPlayer>(),
+
         };
         }
 
@@ -54,6 +53,6 @@ namespace Player.PlayerStates.States
                 behaviour.FixedUpdateBehaviour();
         }
 
-      
+       
     }
 }

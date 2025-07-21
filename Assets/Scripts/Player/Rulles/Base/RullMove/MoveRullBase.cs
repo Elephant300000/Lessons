@@ -5,11 +5,11 @@ namespace Character.Rull
 {
     public abstract class MoveRullBase : IRullBase<IMoveContext>
     {
-        public MoveRullBase(IPlayerStateHandler fsm)
+        public MoveRullBase(IStateHandler fsm)
         {
             this._fsm = fsm;
         }
-        protected IPlayerStateHandler _fsm;
+        protected IStateHandler _fsm;
         public void Subscrube(IMoveContext ctx)
         {
             ctx.onChangeMoveState += _fsm.SetState;

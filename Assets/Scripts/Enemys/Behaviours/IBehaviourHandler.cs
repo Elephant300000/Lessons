@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IBehaviourHandler
 {
-    void RegisteringBehaviour<T>(T behaviour) 
+    void RegisterBehaviour<T>(T behaviour) 
         where T : class, IBehaviourBase; 
 
     T GetBehaviour<T>() 
